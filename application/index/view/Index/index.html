@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=8">
+<title>许愿|许愿网|愿望|许愿树|许愿池-有愿望，就来许吧！-来许网！</title>
+<meta name="description" content="许愿网是一个专业在线许愿、在线发祝福、在线祝福、在线发愿望的平台，并为网友提供永久保存许愿服务的许愿网站。愿望不是一个遥不可及的事，只有心中有信念，许愿网相信每个愿望都可以实现。来许网(www.laixu.net)：来这里许愿！" />
+<meta name="keywords" content="许愿,愿望,许愿网,许愿树,许愿池,许愿瓶,许愿墙,许愿望,发祝福,在线祈福,许愿玻璃瓶,许愿精灵,许愿清单,我要许愿,许愿网站,实现愿望" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<link rel="stylesheet" href="__STATIC__css/bootstrap.css" />
+
+<link rel="stylesheet" href="__STATIC__css/common.css" />
+
+<link rel="stylesheet" href="__STATIC__css/common.css" />
+
+<link rel="shortcut icon" href="/Public/Common/__STATIC__images/favicon.ico" />
+
+<script type="text/JavaScript" src='__STATIC__js/jquery.min.js'></script>
+
+<script type="text/JavaScript" src='__STATIC__js/bootstrap.min.js'></script>
+
+<script type="text/JavaScript" src='__STATIC__js/jquery.SuperSlide.2.1.1.js'></script>
+
+<script type="text/javascript" src="__STATIC__js/common.js"></script>
+</head>
+<body>
+<link rel="stylesheet" href="__STATIC__css/index.css" />
+
+<link rel="stylesheet" href="__STATIC__css/jquery.mCustomScrollbar.css" />
+
+<script type="text/javascript">
+
+    function resize_window(){
+
+        $(".MainBar").width($(window).width()-150);
+
+    }
+
+    $(function(){
+
+        resize_window();
+
+        $(window).resize(function(){
+
+            resize_window();
+
+        })
+
+    })
+
+</script>
+
+<div class="SideBar">
+
+    <a href="/" class="h1"  title="许愿网" style="background:#073553 url(__STATIC__images/57812106b8c1e.png)  no-repeat center center;"><h1 title="许愿网">许愿网</h1></a>
+
+    <a id="nav_add" href="index/index/add" title="立即许愿">
+
+        <span class="glyphicon glyphicon-plus"></span>
+
+    </a>
+
+    <!-- <a id="nav_search" href="/search" title="搜索愿望">
+
+        <span class="glyphicon glyphicon-search"></span>
+
+    </a>
+
+    <a id="nav_user" href="/user.html" title="许愿会员中心">
+
+        <span class="glyphicon glyphicon-user"></span>
+
+    </a>
+
+    <a id="nav_html_1" href="/html/about.html" title="关于许愿网">
+
+        <span class="glyphicon glyphicon-info-sign"></span>
+
+    </a>
+
+    <a id="nav_html_2" href="/html/note.html" title="许愿网建议">
+
+        <span class="glyphicon glyphicon-comment"></span>
+
+    </a> -->
+
+</div>
+
+
+ 
+
+
+
+<div class="MainBar">
+    <div class="box">
+        <div class="wrap">
+            <div class="alert alert-info alert-dismissible fade in" role="alert" style="width:80%;">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <span class="glyphicon glyphicon-volume-up"></span>一份心情, 飘飞着心絮的痕迹 ;一段友情, 彼此永远珍藏在心底 . 深深祝福你，我的朋友: 永远幸福! 永远快乐!
+            </div>
+            <ul class="wishul">
+               {foreach item="list" name="list.data"}
+                    <li>
+                        <b class="c1" style="background-color:{$list.typecolor}">{$list.type }</b>
+                        <a  class="p">
+                            <p>{$list.content }<br/></p>                        
+                        </a>
+                        <span>
+                            山东省临沂市&nbsp;&nbsp;{$list.member }的愿望&nbsp;&nbsp;<br/>许愿时间：{$list['pubtime']|date="Y-m-d H:i:s",###}                       
+                        </span>
+                    </li>
+                {/foreach}            
+            </ul>
+            <div class="indexpage">
+                {$page}
+                <!-- <span class='current'>1F</span>
+                <a href='/p/2'>2F</a>
+                <a href='/p/3'>3F</a>
+                <a href='/p/4'>4F</a>
+                <a href='/p/5'>5F</a>
+                <a href='/p/6'>6F</a>
+                <a href='/p/7'>7F</a>
+                <a href='/p/8'>8F</a> 
+                <a href='/p/9' >...</a> -->            
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="__STATIC__js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script>
+    (function($){
+        $(window).load(function(){
+            $(".wrap").mCustomScrollbar({
+                set_width:false, /*optional element width: boolean, pixels, percentage*/        
+                set_height:false, /*optional element height: boolean, pixels, percentage*/
+                horizontalScroll:false, /*scroll horizontally: boolean*/
+                scrollInertia:950, /*scrolling inertia: integer (milliseconds)*/
+                mouseWheel:true, /*mousewheel support: boolean*/
+                mouseWheelPixels:"auto", /*mousewheel pixels amount: integer, "auto"*/
+                autoDraggerLength:true, /*auto-adjust scrollbar dragger length: boolean*/
+                autoHideScrollbar:false, /*auto-hide scrollbar when idle*/
+                scrollButtons:{ /*scroll buttons*/
+                    enable:false, /*scroll buttons support: boolean*/
+                    scrollType:"continuous", /*scroll buttons scrolling type: "continuous", "pixels"*/
+                    scrollSpeed:"auto", /*scroll buttons continuous scrolling speed: integer, "auto"*/
+                    scrollAmount:40 /*scroll buttons pixels scroll amount: integer (pixels)*/
+                },
+                advanced:{
+                    updateOnBrowserResize:true, /*update scrollbars on browser resize (for layouts based on percentages): boolean*/
+                    updateOnContentResize:false, /*auto-update scrollbars on content resize (for dynamic content): boolean*/
+                    autoExpandHorizontalScroll:false, /*auto-expand width for horizontal scrolling: boolean*/
+                    autoScrollOnFocus:true, /*auto-scroll on focused elements: boolean*/
+                    normalizeMouseWheelDelta:false /*normalize mouse-wheel delta (-1/1)*/
+                },
+                contentTouchScroll:true, /*scrolling by touch-swipe content: boolean*/
+                callbacks:{
+                    onScrollStart:function(){}, /*user custom callback function on scroll start event*/
+                    onScroll:function(){}, /*user custom callback function on scroll event*/
+                    onTotalScroll:function(){}, /*user custom callback function on scroll end reached event*/
+                    onTotalScrollBack:function(){}, /*user custom callback function on scroll begin reached event*/
+                    onTotalScrollOffset:0, /*scroll end reached offset: integer (pixels)*/
+                    onTotalScrollBackOffset:0, /*scroll begin reached offset: integer (pixels)*/
+                    whileScrolling:function(){} /*user custom callback function on scrolling event*/
+                },
+                theme:"light" /*"light", "dark", "light-2", "dark-2", "light-thick", "dark-thick", "light-thin", "dark-thin"*/
+            });
+        });
+    })(jQuery);
+</script>
+</body>
+</html>

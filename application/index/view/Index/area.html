@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>城市联动</title>
+</head>
+
+<style>
+#pro{ height:30px; width:100px;}
+#city{ height:30px; width:100px;}
+#area{ height:30px; width:100px;}
+</style>
+<body>
+
+ <!-- 省份 -->
+    <select name="pro" id="pro">
+    {foreach item="list" name="list"}
+        <option value="{$list.code}">{$list.name }</option>
+    {/foreach}
+    </select>
+ <!-- 城市 -->
+    <select name="city" id="city">
+         <option></option> 
+    </select>
+ <!-- 区县 -->
+    <select name="area" id="area">
+        <option></option>
+    </select>
+
+ <script src="__STATIC__js/jquery.min.js"></script>
+ 
+<script>
+    $('#pro').change(function(){
+
+        $.ajax({
+            type:"post",
+            url:"http://www.xy.com/index/index/shi",
+            data:{
+                id:$(this).val(),
+            },
+            success:function(data){              
+               $('#city').html(data);
+            }
+        });
+    });
+
+    $('#city').change(function(){
+
+        $.ajax({
+            type:"post",
+            url:"http://www.xy.com/index/index/qu",
+            data:{
+                id:$(this).val(),
+            },
+            success:function(data){              
+               $('#area').html(data);
+            }
+        });
+    });
+
+ </script>
+
+</body>
+</html>

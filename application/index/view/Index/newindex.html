@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=8">
+<title>许愿网</title>
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<link rel="stylesheet" href="__STATIC__css/bootstrap.css" />
+
+<link rel="stylesheet" href="__STATIC__css/common.css" />
+
+<link rel="stylesheet" href="__STATIC__css/common.css" />
+
+<link rel="shortcut icon" href="/Public/Common/__STATIC__images/favicon.ico" />
+
+<script type="text/JavaScript" src='__STATIC__js/jquery.min.js'></script>
+
+<script type="text/JavaScript" src='__STATIC__js/bootstrap.min.js'></script>
+
+<script type="text/JavaScript" src='__STATIC__js/jquery.SuperSlide.2.1.1.js'></script>
+
+<script type="text/javascript" src="__STATIC__js/common.js"></script>
+</head>
+<body>
+<link rel="stylesheet" href="__STATIC__css/index.css" />
+
+<link rel="stylesheet" href="__STATIC__css/jquery.mCustomScrollbar.css" />
+
+<script type="text/javascript">
+
+    function resize_window(){
+
+        $(".MainBar").width($(window).width()-150);
+
+    }
+
+    $(function(){
+
+        resize_window();
+
+        $(window).resize(function(){
+
+            resize_window();
+
+        })
+
+    })
+
+</script>
+
+<div class="SideBar">
+
+    <a href="/" class="h1"  title="许愿网" style="background:#073553 url(__STATIC__images/57812106b8c1e.png)  no-repeat center center;"><h1 title="许愿网">许愿网</h1></a>
+
+    <a id="nav_add" href="index/index/add" title="立即许愿">
+
+        <span class="glyphicon glyphicon-plus"></span>
+
+    </a>
+
+    <!-- <a id="nav_search" href="/search" title="搜索愿望">
+
+        <span class="glyphicon glyphicon-search"></span>
+
+    </a>
+
+    <a id="nav_user" href="/user.html" title="许愿会员中心">
+
+        <span class="glyphicon glyphicon-user"></span>
+
+    </a>
+
+    <a id="nav_html_1" href="/html/about.html" title="关于许愿网">
+
+        <span class="glyphicon glyphicon-info-sign"></span>
+
+    </a>
+
+    <a id="nav_html_2" href="/html/note.html" title="许愿网建议">
+
+        <span class="glyphicon glyphicon-comment"></span>
+
+    </a> -->
+
+</div>
+
+
+ 
+
+
+
+<div class="MainBar">
+    <div class="box">
+        <div class="wrap">
+            <div class="alert alert-info alert-dismissible fade in" role="alert" style="width:80%;">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <span class="glyphicon glyphicon-volume-up"></span>一份心情, 飘飞着心絮的痕迹 ;一段友情, 彼此永远珍藏在心底 . 深深祝福你，我的朋友: 永远幸福! 永远快乐!
+            </div>
+            <ul class="wishul">
+               {foreach item="list" name="list"}
+                    <li>
+                        <b class="c1" style="background-color:{$list.typecolor}">{$list.type }</b>
+                        <a  class="p">
+                            <p>{$list.content }<br/></p>                        
+                        </a>
+                        <span>
+                            山东省临沂市&nbsp;&nbsp;{$list.member }的愿望&nbsp;&nbsp;<br/>许愿时间：{$list['pubtime']|date="Y-m-d H:i:s",###}                       
+                        </span>
+                    </li>
+                {/foreach}            
+            </ul>
+            <div class="indexpage">
+                
+                <span class='current'>1F</span>
+                {php}
+                for($i=2;$i<=$countpage;$i++){
+                    echo "<span class='pages' data-id='".$i."' >".$i."F</span>";
+                }
+                {/php}
+                
+                <a href='#' >...</a>            
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $('.pages').click(function(){
+        
+        $('.wishul').html("");
+        var page=$(this).attr('data-id');
+        $.ajax({
+            url:"http://www.xy.com/index/index/getlist",
+            type:"GET",
+            data:{page:page},
+            success:function(data){
+                $(data).each(function(index,val){
+                   //alert (index);
+                    var oli="<li><b class='c1' style='background-color:"
+                    +val.typecolor+
+                    "'>"+val.type +
+                    "</b><a href='#' title='点击查看' class='p'><p>"
+                    +val.content+
+                    "<br/></p></a><span>"
+                    +val.address+
+                    "&nbsp;&nbsp;"
+                    +val.member+
+                    "的愿望&nbsp;&nbsp;<br/>许愿时间："
+                    +val.pubtime+
+                    "</span></li>";
+                     $('.wishul').append(oli);
+                });
+
+            },
+            error:function(){}
+        });
+        //alert (page);
+    });
+</script>
+<script type="text/javascript" src="__STATIC__js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script>
+    (function($){
+        $(window).load(function(){
+            $(".wrap").mCustomScrollbar({
+                set_width:false, /*optional element width: boolean, pixels, percentage*/        
+                set_height:false, /*optional element height: boolean, pixels, percentage*/
+                horizontalScroll:false, /*scroll horizontally: boolean*/
+                scrollInertia:950, /*scrolling inertia: integer (milliseconds)*/
+                mouseWheel:true, /*mousewheel support: boolean*/
+                mouseWheelPixels:"auto", /*mousewheel pixels amount: integer, "auto"*/
+                autoDraggerLength:true, /*auto-adjust scrollbar dragger length: boolean*/
+                autoHideScrollbar:false, /*auto-hide scrollbar when idle*/
+                scrollButtons:{ /*scroll buttons*/
+                    enable:false, /*scroll buttons support: boolean*/
+                    scrollType:"continuous", /*scroll buttons scrolling type: "continuous", "pixels"*/
+                    scrollSpeed:"auto", /*scroll buttons continuous scrolling speed: integer, "auto"*/
+                    scrollAmount:40 /*scroll buttons pixels scroll amount: integer (pixels)*/
+                },
+                advanced:{
+                    updateOnBrowserResize:true, /*update scrollbars on browser resize (for layouts based on percentages): boolean*/
+                    updateOnContentResize:false, /*auto-update scrollbars on content resize (for dynamic content): boolean*/
+                    autoExpandHorizontalScroll:false, /*auto-expand width for horizontal scrolling: boolean*/
+                    autoScrollOnFocus:true, /*auto-scroll on focused elements: boolean*/
+                    normalizeMouseWheelDelta:false /*normalize mouse-wheel delta (-1/1)*/
+                },
+                contentTouchScroll:true, /*scrolling by touch-swipe content: boolean*/
+                callbacks:{
+                    onScrollStart:function(){}, /*user custom callback function on scroll start event*/
+                    onScroll:function(){}, /*user custom callback function on scroll event*/
+                    onTotalScroll:function(){}, /*user custom callback function on scroll end reached event*/
+                    onTotalScrollBack:function(){}, /*user custom callback function on scroll begin reached event*/
+                    onTotalScrollOffset:0, /*scroll end reached offset: integer (pixels)*/
+                    onTotalScrollBackOffset:0, /*scroll begin reached offset: integer (pixels)*/
+                    whileScrolling:function(){} /*user custom callback function on scrolling event*/
+                },
+                theme:"light" /*"light", "dark", "light-2", "dark-2", "light-thick", "dark-thick", "light-thin", "dark-thin"*/
+            });
+        });
+    })(jQuery);
+</script>
+</body>
+</html>

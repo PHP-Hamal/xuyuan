@@ -1,0 +1,185 @@
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>简易请假系统</title>
+		
+	<style>
+		/* Basic Grey */
+		.basic-grey {
+		margin-left:auto;
+		margin-right:auto;
+		max-width: 500px;
+		background: #F7F7F7;
+		padding: 25px 15px 25px 10px;
+		font: 12px Georgia, "Times New Roman", Times, serif;
+		color: #888;
+		text-shadow: 1px 1px 1px #FFF;
+		border:1px solid #E4E4E4;
+		}
+		.basic-grey h1 {
+		font-size: 25px;
+		padding: 0px 0px 10px 40px;
+		display: block;
+		border-bottom:1px solid #E4E4E4;
+		margin: -10px -15px 30px -10px;;
+		color: #888;
+		}
+		.basic-grey h1>span {
+		display: block;
+		font-size: 11px;
+		}
+		.basic-grey label {
+		display: block;
+		margin: 0px;
+		}
+		.basic-grey label>span {
+		float: left;
+		width: 20%;
+		text-align: right;
+		padding-right: 10px;
+		margin-top: 10px;
+		color: #888;
+		}
+		.basic-grey input[type="text"], .basic-grey input[type="email"], input[type="password"], .basic-grey textarea, .basic-grey select {
+		border: 1px solid #DADADA;
+		color: #888;
+		height: 30px;
+		margin-bottom: 16px;
+		margin-right: 6px;
+		margin-top: 2px;
+		outline: 0 none;
+		padding: 3px 3px 3px 5px;
+		width: 70%;
+		font-size: 12px;
+		line-height:15px;
+		box-shadow: inset 0px 1px 4px #ECECEC;
+		-moz-box-shadow: inset 0px 1px 4px #ECECEC;
+		-webkit-box-shadow: inset 0px 1px 4px #ECECEC;
+		}
+		.basic-grey textarea{
+		padding: 5px 3px 3px 5px;
+		
+		}
+		.basic-grey select {
+		background: #FFF url('down-arrow.png') no-repeat right;
+		background: #FFF url('down-arrow.png') no-repeat right);
+		appearance:none;
+		-webkit-appearance:none;
+		-moz-appearance: none;
+		text-indent: 0.01px;
+		text-overflow: '';
+		width: 70%;
+		height: 35px;
+		line-height: 25px;
+		}
+		.basic-grey textarea{
+		height:100px;
+		}
+		.basic-grey .submit {
+		background: #E27575;
+		border: none;
+		padding: 10px 25px 10px 25px;
+		color: #FFF;
+		box-shadow: 1px 1px 5px #B6B6B6;
+		border-radius: 3px;
+		text-shadow: 1px 1px 1px #9E3F3F;
+		cursor: pointer;
+		}
+		.basic-grey .button:hover {
+		background: #CF7A7A
+		}
+	</style>
+	<script type="text/javascript" src="__STATIC__js/jquery.min.js"></script>
+	<script type="text/javascript" src="__STATIC__layer/layer.js"></script>
+	<link rel="stylesheet" href="__STATIC__layer/skin/default/layer.css" />
+	</head>
+	<body>
+		<form action="{:url('Index/do_qingjias')}" method="post" enctype="multipart/form-data" class="basic-grey">
+			<h1>简易请假系统
+				<span>请填写你的信息.</span>
+			</h1>
+			<label>
+				<span>请假人:</span>
+				<input type="text" id="name" name="name"/>
+			</label>
+			<label>
+				<span>所在班级:</span>
+				<select name="banji">
+					<option value="php">PHP</option>
+					<option value="java">java</option>
+					<option value="设计">设计</option>
+					<option value="前端">前端</option>
+				</select>
+			</label>
+			<label>
+				<span>请假开始时间:</span>
+				<input type="text" name="times" class="sang_Calender"/>
+				<script type="text/javascript" src='__STATIC__js/datetime.js'></script>
+			</label>
+			<label>
+				<span>请假结束时间:</span>
+				<input type="text" name="notimes" class="sang_Calender"/>
+				<script type="text/javascript" src='__STATIC__js/datetime.js'></script>
+			</label>
+			<label>
+				<span>请假原因:</span>
+				<textarea rows="4" id="reason" name="content"></textarea>
+			</label>
+			<label>
+				<span>本人手机号:</span>
+				<input type="text" id="phone" name="phone"/>
+			</label>
+			<label>
+				<span>家长手机号:</span>
+				<input type="text" id="tel" name="phones"/>
+			</label>
+			<br/>
+			<label>
+				<span>&nbsp;</span>
+				<input type="submit" class="submit" value="提交" id="button"/>
+			</label>
+		</form>
+	</body>
+	<script type="text/javascript">
+		$('#button').click(function(){
+			var name=$('#name').val();
+			var banji=$('#banji').val();
+			var starttime=$('#starttime').val();
+			var endtime=$('#endtime').val();
+			var reason=$('#reason').val();
+			var phone=$('#phone').val();
+			var tel=$('#tel').val();
+			var	reg = /^[\u4E00-\u9FA5]{2,4}$/;
+            if(!reg.test(name)){
+			//alert('请假人格式不对');
+                layer.msg('请假人格式不对', {icon: 5});
+                return false;
+            }
+            if(!(/^[\u4E00-\u9FA5]{3,80}$/.test(reason))){
+                layer.msg('请假内容格式不对', {icon: 5});
+                return false;
+            }
+            if(!(/^1[34578]\d{9}$/.test(phone))){
+                layer.msg('本人手机号有误，请重填', {icon: 5});
+                return false;
+            }
+            if(!(/^1[34578]\d{9}$/.test(tel))){
+                layer.msg('家长手机号有误，请重填', {icon: 5});
+                return false;
+            }
+		});
+	</script>
+	<!-- <script type="text/javascript">
+		$('#button').click(function(){
+			$.ajax({
+				url:"{:url('Index/do_qingjia')}",
+				type:"POST",
+				data:,
+				success:function(data){
+					alert('请求成功');},
+				error:function(data){
+					alert('未知原因，请求失败')},
+			});
+		});
+	</script> -->
+</html>
